@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "HI!"
+echo "HI! LISTENING ON" ${1}
 mkdir /downloads
-socat tcp-listen:9223,fork tcp:localhost:9222 &
+socat tcp-listen:${1},fork tcp:localhost:9222 &
 echo "1ST"
 (google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox http://127.0.0.1:9222) &
 sleep 3
