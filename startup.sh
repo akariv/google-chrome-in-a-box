@@ -13,7 +13,7 @@ sleep 3
 echo "STAT"
 curl 127.0.0.1:9222/json/list
 echo "WAIT"
-while true ; do sleep 10; done
+sleep 14400
 # google-chrome-unstable --disable-gpu --no-sandbox --log-level=TRACE http://127.0.0.1:9223/
 # curl 127.0.0.1:9223/json/list
 # netstat -anp | grep 92
