@@ -1,7 +1,8 @@
 #!/bin/bash
-echo "HI! LISTENING ON" ${1}
+echo "HI! LISTENING ON" ${1} ${2}
 mkdir /downloads
 socat tcp-listen:${1},fork tcp:localhost:9222 &
+(cd /downloads && python3 -m http.server ${2}) &
 echo "1ST"
 (google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox --user-data-dir=/userdata/ http://127.0.0.1:9222) &
 sleep 3
