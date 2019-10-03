@@ -2,7 +2,6 @@
 echo "HI! LISTENING ON" ${1} ${2}
 mkdir /downloads
 socat tcp-listen:${1},fork tcp:localhost:9222 &
-(cd /downloads && python3 -m http.server ${2}) &
 echo "1ST"
 (google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox --user-data-dir=/userdata/ http://127.0.0.1:9222) &
 sleep 3
@@ -15,6 +14,7 @@ sleep 3
 echo "STAT"
 curl 127.0.0.1:9222/json/list
 echo "WAIT"
+(cd /downloads && python3 -m http.server ${2}) &
 sleep 14400
 # google-chrome-unstable --disable-gpu --no-sandbox --log-level=TRACE http://127.0.0.1:9223/
 # curl 127.0.0.1:9223/json/list
