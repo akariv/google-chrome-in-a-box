@@ -3,11 +3,12 @@ echo "HI! LISTENING ON" ${1}
 mkdir /downloads
 socat tcp-listen:${1},fork tcp:localhost:9222 &
 echo "1ST"
-(google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox http://127.0.0.1:9222) &
+(google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox --user-data-dir=/userdata/ http://127.0.0.1:9222) &
 sleep 3
 kill %2
 echo "2ND"
-(google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox http://127.0.0.1:9222) &
+python3 /app/fix_profile.py
+(google-chrome --start-maximized --remote-debugging-port=9222 --no-sandbox --user-data-dir=/userdata/ http://127.0.0.1:9222) &
 # # google-chrome-unstable --start-maximized --remote-debugging-port=9223 --disable-gpu http://127.0.0.1:9223 &
 sleep 3
 echo "STAT"
