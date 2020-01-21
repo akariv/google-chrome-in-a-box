@@ -14,7 +14,7 @@ sleep 3
 echo "STAT"
 curl 127.0.0.1:9222/json/list
 echo "WAIT"
-(cd /downloads && python3 -m http.server ${2}) &
+(cd /downloads && python3 -m pip install flask && python3 /app/server.py ${2}) &
 sleep 14400
 # google-chrome-unstable --disable-gpu --no-sandbox --log-level=TRACE http://127.0.0.1:9223/
 # curl 127.0.0.1:9223/json/list
