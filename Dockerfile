@@ -16,5 +16,6 @@ ENV DISPLAY=:99.0
 COPY entrypoint.sh .
 COPY startup.sh .
 COPY fix_profile.py .
+COPY server.py .
 
 ENTRYPOINT ["/app/entrypoint.sh"]
