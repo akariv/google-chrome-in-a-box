@@ -2,7 +2,8 @@ FROM ubuntu:bionic
 
 WORKDIR /app/
 
-RUN apt-get update && apt-get install -y wget gnupg unzip xvfb net-tools socat curl
+RUN apt-get update && apt-get install -y wget gnupg unzip xvfb net-tools socat curl python3 python3-pip
+RUN pip3 install flask
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
