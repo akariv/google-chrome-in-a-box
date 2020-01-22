@@ -4,19 +4,12 @@ import logging
 from flask import Flask, request, send_from_directory
 
 # set the project root directory as the static folder, you can set others.
-app = Flask(__name__, static_url_path='')
+app = Flask(__name__)
 
-@app.route('/hi')
-def hi():
-    app.logger.error('XXX %r' % request.method)
-    return 'Hi2'
-
-@app.route('/<path>', methods=['GET', 'DELETE'])
-def path_handler(path):
-    app.logger.error('YYY %r %s' % (request.method, path))
+@app.route('/<path:filename>', methods=['GET', 'DELETE'])
+def path_handler(filename):
     if request.method == 'GET':
-        print('SENDING', path)
-        return send_from_directory('', path)
+        return send_from_directory('/downloads', filename)
     elif request.method == 'DELETE':
         os.unlink(path)
         return 'OK'
