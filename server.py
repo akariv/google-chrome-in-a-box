@@ -8,7 +8,7 @@ from flask import Flask, request, send_from_directory, send_file
 app = Flask(__name__)
 
 @app.route('/screenshot')
-def screenshot(filename):
+def screenshot():
     subprocess.run('XAUTHORITY=`find /tmp -name Xauthority` xwd -root -silent | convert xwd:- png:/tmp/screenshot.png', shell=True)
     return send_file('/tmp/screenshot.png')
 
