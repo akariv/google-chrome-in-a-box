@@ -1,10 +1,16 @@
 import os
 import sys
 import logging
-from flask import Flask, request, send_from_directory
+import subprocess
+from flask import Flask, request, send_from_directory, send_file
 
 # set the project root directory as the static folder, you can set others.
 app = Flask(__name__)
+
+@app.route('/screenshot')
+def screenshot(filename):
+    subprocess.run('XAUTHORITY=`find /tmp -name Xauthority` xwd -root -silent | convert xwd:- png:/tmp/screenshot.png', shell=True)
+    return send_file('/tmp/screenshot.png')
 
 @app.route('/<path:filename>', methods=['GET', 'DELETE'])
 def path_handler(filename):
