@@ -19,6 +19,4 @@ COPY startup.sh .
 COPY fix_profile.py .
 COPY server.py .
 
-RUN echo '127.0.0.1 stats.tehila.gov.il' >> /etc/hosts
-
 ENTRYPOINT ["/app/entrypoint.sh"]
