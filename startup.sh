@@ -14,14 +14,8 @@ echo "2ND"
 socat tcp-listen:${1},fork tcp:localhost:19222 &
 python3 /app/fix_profile.py
 (google-chrome --start-maximized --remote-debugging-port=19222 --no-sandbox --user-data-dir=/userdata/ --disable-features=TranslateUI --user-agent="$USER_AGENT" ${3}) &
-# # google-chrome-unstable --start-maximized --remote-debugging-port=9223 --disable-gpu http://127.0.0.1:9223 &
 sleep 3
 echo "STAT"
 curl 127.0.0.1:9222/json/list
 echo "WAIT"
 sleep 14400
-# google-chrome-unstable --disable-gpu --no-sandbox --log-level=TRACE http://127.0.0.1:9223/
-# curl 127.0.0.1:9223/json/list
-# netstat -anp | grep 92
-# ps -ef | grep root
-# python3 getter.py
